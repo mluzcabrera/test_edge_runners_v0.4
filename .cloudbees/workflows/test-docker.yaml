@@ -10,7 +10,7 @@ jobs:
     runs-on: label1
     steps:
       - name: Say hello
-        uses: docker://golang:1.20.3-alpine3.17
+        uses: docker://docker.io/library/golang:1.20.3-alpine3.17
         shell: sh
         run: |
           echo "hello world"
