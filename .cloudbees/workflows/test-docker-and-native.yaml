@@ -4,6 +4,12 @@ name: Test docker and native
 on:
   workflow_dispatch:
 jobs:
+  hello_action:
+    steps:
+      - name: Say hello
+        uses: cloudbees-io/checkout@v1
+    runs-on:
+      - label1
   hello_docker:
     steps:
       - name: Say hello
@@ -14,10 +20,10 @@ jobs:
     runs-on:
       - label1
   hello_native:
-     steps:
-       - name: Say hello
-         run: |
-           echo "Hello world! I'm $(whoami) on $(hostname)"
-         shell: sh
-     runs-on:
-       - native
+    steps:
+      - name: Say hello
+        run: |
+          echo "Hello world! I'm $(whoami) on $(hostname)"
+        shell: sh
+    runs-on:
+      - native
