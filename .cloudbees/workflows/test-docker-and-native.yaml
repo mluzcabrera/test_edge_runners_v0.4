@@ -4,6 +4,12 @@ name: Test docker and native
 on:
   workflow_dispatch:
 jobs:
+  hello_preconf_action:
+    steps:
+      - name: Say hello
+        uses: mlcb_checkout
+    runs-on:
+      - label1
   hello_action:
     steps:
       - name: Say hello
