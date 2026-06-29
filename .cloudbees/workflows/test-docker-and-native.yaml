@@ -33,3 +33,9 @@ jobs:
         shell: sh
     runs-on:
       - native
+  hello_tekton:
+    steps:
+      - name: Say hello
+        run: |
+          echo "Hello world! I'm $(whoami) on $(hostname)"
+        shell: sh
