@@ -15,7 +15,7 @@ jobs:
         run: |
           echo "hello world"
   build2:
-    runs-on: ${{ vars.mlcb_runs_on }}
+    runs-on: ${{ secrets.mlcb_runs_on }}
     steps:
       - name: Say hello
         uses: docker://docker.io/library/golang:1.20.3-alpine3.17
