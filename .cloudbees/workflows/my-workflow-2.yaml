@@ -14,3 +14,13 @@ jobs:
         shell: sh
         run: |
           echo "hello world ${{ vars.var1}} and ${{ secrets.secret1 }}"
+  build-edge:
+    runs-on: my-label-1
+    environment: mlcbedgerunnersenv
+    steps:
+      - name: Say hello
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "hello world ${{ vars.var1}} and ${{ secrets.secret1 }}"
+          my-label-1
