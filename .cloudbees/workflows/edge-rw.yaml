@@ -8,6 +8,12 @@ on:
         type: string
         default: my-label-3
 jobs:
+  simple-check:
+    environment: mlcbedgerunnersenv
+    steps:
+      - run: echo "vars.envlabel-> ${{ vars.envlabel}} and inputs.label-> ${{ inputs.label }}"
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
   caller-job:
     needs: simple-check
     uses: ./.cloudbees/workflows/reusable-edge.yaml
@@ -20,13 +26,10 @@ jobs:
       - uses: docker://alpine:3.17
         run: echo "got ${{ needs.caller-job.outputs.final_greeting }}"
   caller-job-env:
+    environment: mlcbedgerunnersenv
     uses: ./.cloudbees/workflows/reusable-edge.yaml
     with:
       runner_label: ${{ vars.envlabel }}
     needs:
       - simple-check
-  simple-check:
-    steps:
-      - run: echo "vars.envlabel-> ${{ vars.envlabel}} and inputs.label-> ${{ inputs.label }}"
-        uses: docker://golang:1.20.3-alpine3.17
-        shell: sh
+  
