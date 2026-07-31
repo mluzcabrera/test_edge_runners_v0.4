@@ -18,6 +18,9 @@ jobs:
       - id: s
         uses: docker://alpine:3.20
         run: echo "cool" > "$CLOUDBEES_OUTPUTS/greeting"
+      - run: echo "${{ inputs.runner_label }}"
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
   edge-dsl:
     needs: [pre-job]
     runs-on:
