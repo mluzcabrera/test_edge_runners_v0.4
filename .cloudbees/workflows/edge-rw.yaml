@@ -7,7 +7,7 @@ jobs:
   caller-job:
     uses: ./.cloudbees/workflows/reusable-edge.yaml
     with:
-      runner_label: my-edge-label
+      runner_label: my-label-3
   consume:
     needs: [caller-job]
     steps:
