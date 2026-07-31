@@ -1,0 +1,32 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: reusable-edge
+on:
+  workflow_call:
+    inputs:
+      runner_label:
+        type: string
+        required: true
+    outputs:
+      final_greeting:
+        value: ${{ jobs.edge-dsl.outputs.output2 }}
+jobs:
+  pre-job:
+    outputs:
+      output1: ${{ steps.s.outputs.greeting }}
+    steps:
+      - id: s
+        uses: docker://alpine:3.20
+        run: echo "cool" > "$CLOUDBEES_OUTPUTS/greeting"
+  edge-dsl:
+    needs: [pre-job]
+    runs-on:
+      - self-hosted
+      - ${{ inputs.runner_label }}
+    outputs:
+      output2: ${{ steps.s.outputs.greeting2 }}
+    steps:
+      - id: s
+        uses: docker://alpine:3.20
+        run: |
+          echo "previous: ${{ needs.pre-job.outputs.output1 }}" > "$CLOUDBEES_OUTPUTS/greeting2"
