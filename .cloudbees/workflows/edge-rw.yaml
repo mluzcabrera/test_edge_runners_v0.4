@@ -18,3 +18,7 @@ jobs:
     steps:
       - uses: docker://alpine:3.17
         run: echo "got ${{ needs.caller-job.outputs.final_greeting }}"
+  caller-job-env:
+    uses: ./.cloudbees/workflows/reusable-edge.yaml
+    with:
+      runner_label: ${{ vars.envlabel }}
