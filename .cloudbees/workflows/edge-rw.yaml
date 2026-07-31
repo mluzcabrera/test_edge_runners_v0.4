@@ -11,7 +11,7 @@ jobs:
   simple-check:
     environment: mlcbedgerunnersenv
     steps:
-      - run: echo "vars.envlabel-> ${{ vars.envlabel}} and inputs.label-> ${{ inputs.label }}"
+      - run: echo "vars.envlabel-> ${{ vars.envlabel}} and inputs.label-> ${{ inputs.label }} and vars. varslabel-> ${{vars.varslabel}}"
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
   caller-job:
@@ -25,6 +25,12 @@ jobs:
     steps:
       - uses: docker://alpine:3.17
         run: echo "got ${{ needs.caller-job.outputs.final_greeting }}"
+  caller-job-vars:
+    uses: ./.cloudbees/workflows/reusable-edge.yaml
+    with:
+      runner_label: ${{ vars.varslabel }}
+    needs:
+      - simple-check
   caller-job-env:
     environment: mlcbedgerunnersenv
     uses: ./.cloudbees/workflows/reusable-edge.yaml
