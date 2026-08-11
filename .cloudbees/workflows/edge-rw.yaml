@@ -31,11 +31,5 @@ jobs:
       runner_label: ${{ vars.varslabel }}
     needs:
       - simple-check
-  caller-job-env:
-    environment: mlcbedgerunnersenv
-    uses: ./.cloudbees/workflows/reusable-edge.yaml
-    with:
-      runner_label: ${{ vars.envlabel }}
-    needs:
-      - simple-check
+  
   
