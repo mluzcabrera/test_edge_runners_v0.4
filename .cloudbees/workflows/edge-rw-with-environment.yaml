@@ -1,0 +1,26 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: edge rw with environment
+on:
+  workflow_dispatch:
+    inputs:
+      label:
+        type: string
+        default: my-label-3
+jobs:
+  simple-check:
+    environment: mlcbedgerunnersenv
+    steps:
+      - run: echo "vars.envlabel-> ${{ vars.envlabel}} and inputs.label-> ${{ inputs.label }} and vars. varslabel-> ${{vars.varslabel}}"
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+  caller-job-env:
+    environment: mlcbedgerunnersenv
+    uses: ./.cloudbees/workflows/reusable-edge.yaml
+    with:
+      runner_label: ${{ vars.envlabel }}
+    needs:
+      - simple-check
+  
+  
+
