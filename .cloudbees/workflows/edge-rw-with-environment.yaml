@@ -10,13 +10,7 @@ jobs:
       - run: echo "vars. varslabel-> ${{ vars.varslabel }}"
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
-  caller-job-env:
-    environment: mlcbedgerunnersenv
-    uses: ./.cloudbees/workflows/reusable-edge.yaml
-    with:
-      runner_label: ${{ vars.envlabel }}
-    needs:
-      - simple-check
+
   
   
 
