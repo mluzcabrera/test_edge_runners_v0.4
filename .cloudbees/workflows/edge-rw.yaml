@@ -26,6 +26,7 @@ jobs:
       - uses: docker://alpine:3.17
         run: echo "got ${{ needs.caller-job.outputs.final_greeting }}"
   caller-job-vars:
+    runs-on: self-hosted
     uses: ./.cloudbees/workflows/reusable-edge.yaml
     with:
       runner_label: ${{ vars.varslabel }}
