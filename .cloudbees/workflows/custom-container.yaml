@@ -7,6 +7,6 @@ jobs:
   build-edge:
     steps:
       - name: Say hello
-        uses: mlcb_container
+        uses: docker://mlcb_container
     runs-on:
       - self-hosted
