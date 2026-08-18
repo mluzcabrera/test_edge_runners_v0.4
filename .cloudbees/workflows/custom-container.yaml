@@ -1,0 +1,12 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: Custom container
+on:
+  workflow_dispatch:
+jobs:
+  build-edge:
+    steps:
+      - name: Say hello
+        uses: mlcb_container
+    runs-on:
+      - self-hosted
