@@ -12,3 +12,11 @@ jobs:
         shell: sh
     runs-on:
       - self-hosted
+  build-edge2:
+    steps:
+      - name: Say hello
+        run: echo "hola"
+        uses: mlcb_container
+        shell: sh
+    runs-on:
+      - self-hosted
