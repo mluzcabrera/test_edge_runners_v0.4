@@ -1,0 +1,15 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: Create Upload and Register binary
+inputs:
+  pathtobinary:  
+    description: 'Path to binary'
+    required: true
+runs:
+  using: composite
+  steps:
+      - name: Create file
+        id: step3
+        uses: docker://curlimages/curl:latest
+        shell: sh
+        run: echo "This is an example file - $(date)" > ${{inputs.pathtobinary}}
