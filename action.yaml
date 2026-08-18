@@ -1,15 +1,12 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: action
-name: Create Upload and Register binary
-inputs:
-  pathtobinary:  
-    description: 'Path to binary'
-    required: true
+name: Say hello
+
 runs:
   using: composite
   steps:
       - name: Create file
         id: step3
-        uses: docker://curlimages/curl:latest
+        uses: docker://golang:1.20.3-alpine3.17
         shell: sh
-        run: echo "This is an example file - $(date)" > ${{inputs.pathtobinary}}
+        run: echo "Hello world! I'm $(whoami) on $(hostname)"
