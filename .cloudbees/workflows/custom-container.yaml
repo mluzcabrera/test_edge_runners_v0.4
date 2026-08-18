@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Say hello
         run: echo "hola"
-        uses: docker://mlcb_container
+        uses: mlcb-container2
         shell: sh
 
   
