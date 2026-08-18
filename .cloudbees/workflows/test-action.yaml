@@ -9,4 +9,4 @@ jobs:
       - name: Say hello
         uses: cloudbees-io/checkout@v1
     runs-on:
-      - label1
+      - my-label-3
