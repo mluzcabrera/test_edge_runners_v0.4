@@ -7,6 +7,8 @@ jobs:
   build-edge:
     steps:
       - name: Say hello
+        run: echo "hola"
         uses: docker://mlcb_container
+        shell: sh
     runs-on:
       - self-hosted
