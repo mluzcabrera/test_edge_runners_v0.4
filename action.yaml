@@ -5,7 +5,7 @@ name: Say hello
 runs:
   using: composite
   steps:
-      - name: Create file
+      - name: Say hello
         id: step3
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
