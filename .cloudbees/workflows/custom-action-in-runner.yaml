@@ -6,6 +6,7 @@ on:
 
 jobs:
   hello_custom_action:
+    runs-on: self-hosted
     steps:
       - name: Say hello
         uses: mluzcabrera/test_edge_runners_v0.4@main
