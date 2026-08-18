@@ -13,14 +13,7 @@ on:
         default: 1.0.0
         required: true
 jobs:
-  create_upload_register_binary:
-    env:
-      NEXUS_USERNAME: ${{vars.nexus_training_actions_user}}
-      NEXUS_PASSWORD: ${{secrets.nexus_training_actions_secret}}
-      NEXUS_REPO: ${{vars.nexus_training_actions_repo}}
+  hello_custom_action:
     steps:
-      - name: Create Upload and Register binary
-        uses: mluzcabrera/actiontraining@main
-        with:
-          pathtobinary: ${{inputs.pathtobinary}}
-          artifactversion: ${{inputs.artifactversion}}
+      - name: Say hello
+        uses: mluzcabrera/test_edge_runners_v0.4@main
