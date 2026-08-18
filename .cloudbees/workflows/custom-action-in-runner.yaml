@@ -1,0 +1,26 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: Custom action in runner
+on:
+  workflow_dispatch:
+    inputs:
+      pathtobinary:
+        type: string
+        default: example.txt
+        required: true
+      artifactversion:
+        type: string
+        default: 1.0.0
+        required: true
+jobs:
+  create_upload_register_binary:
+    env:
+      NEXUS_USERNAME: ${{vars.nexus_training_actions_user}}
+      NEXUS_PASSWORD: ${{secrets.nexus_training_actions_secret}}
+      NEXUS_REPO: ${{vars.nexus_training_actions_repo}}
+    steps:
+      - name: Create Upload and Register binary
+        uses: mluzcabrera/actiontraining@main
+        with:
+          pathtobinary: ${{inputs.pathtobinary}}
+          artifactversion: ${{inputs.artifactversion}}
