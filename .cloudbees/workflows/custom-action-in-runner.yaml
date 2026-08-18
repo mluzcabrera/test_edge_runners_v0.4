@@ -3,15 +3,7 @@ kind: workflow
 name: Custom action in runner
 on:
   workflow_dispatch:
-    inputs:
-      pathtobinary:
-        type: string
-        default: example.txt
-        required: true
-      artifactversion:
-        type: string
-        default: 1.0.0
-        required: true
+
 jobs:
   hello_custom_action:
     steps:
